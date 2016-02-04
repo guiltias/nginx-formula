@@ -8,6 +8,10 @@ worker_processes  {{ nginx.get('worker_processes', 1) }};
 {% if worker_rlimit_nofile -%}
 worker_rlimit_nofile {{ worker_rlimit_nofile }};
 {% endif -%}
+{% set worker_priority = nginx.get('worker_priority', '') -%}
+{% if worker_priority -%}
+worker_priority {{ worker_priority }};
+{% endif -%}
 
 {% set error_log_location = nginx.get('error_log',{}).get('location', '/var/log/nginx/error.fifo') -%}
 {% set error_log_level = nginx.get('error_log',{}).get('level', 'warn') -%}
@@ -23,6 +27,7 @@ events {
     {% if use -%}
     use {{ use }};
     {% endif %}
+    multi_accept {{ nginx.get('events', {}).get('multi_accept', 'on') }};
 }
 
 http {
