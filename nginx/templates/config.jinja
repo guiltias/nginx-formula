@@ -40,7 +40,6 @@ http {
     {% endif -%}
     include /etc/nginx/mime.types;
     default_type  {{ nginx.get('default_type', 'application/octet-stream') }};
-    access_log off;
     sendfile {{ nginx.get('sendfile', 'on') }};
     #tcp_nopush on;
     keepalive_timeout {{ nginx.get('keepalive_timeout', 65) }};
