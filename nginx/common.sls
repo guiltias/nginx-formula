@@ -48,6 +48,10 @@
       default_user: {{ nginx_map.default_user }}
       default_group: {{ nginx_map.default_group }}
 
+{# ensure that default file has been removed#}
+/etc/nginx/sites-enabled/default:
+  file.absent
+
 {% if nginx.get('init_conf_dirs', True) %}
 {% for dir in ('sites-enabled', 'sites-available') %}
 {{ conf_dir }}/{{ dir }}:
