@@ -41,8 +41,14 @@ http {
     include /etc/nginx/mime.types;
     default_type  {{ nginx.get('default_type', 'application/octet-stream') }};
     sendfile {{ nginx.get('sendfile', 'on') }};
-    #tcp_nopush on;
-    keepalive_timeout {{ nginx.get('keepalive_timeout', 65) }};
+    keepalive_timeout {{ nginx.get('keepalive_timeout', 10) }};
+    sendfile {{ nginx.get('sendfile', 'on') }};
+    proxy_max_temp_file_size {{ nginx.get('proxy_max_temp_file_size', 0) }};
+    tcp_nopush {{ nginx.get('tcp_nopush', 'on') }};
+    tcp_nodelay {{ nginx.get('tcp_nodelay', 'on') }};
+    keepalive_requests {{ nginx.get('keepalive_requests', 100000) }};
+    reset_timedout_connection {{ nginx.get('reset_timedout_connection', 'on') }};
+    types_hash_max_size {{ nginx.get('types_hash_max_size', 2048) }};
     server_names_hash_bucket_size {{ nginx.get('server_names_hash_bucket_size', 128) }};
     server_names_hash_max_size {{ nginx.get('server_names_hash_max_size', 1024) }};
     types_hash_max_size {{ nginx.get('types_hash_max_size', 8192) }};
