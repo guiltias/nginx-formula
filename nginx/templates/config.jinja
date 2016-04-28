@@ -52,6 +52,7 @@ http {
     server_names_hash_max_size {{ nginx.get('server_names_hash_max_size', 1024) }};
 
     gzip {{ nginx.get('gzip', 'on') }};
+    gzip_min_length {{ nginx.get('gzip_min_length', '10240') }};
     gzip_vary {{ nginx.get('gzip_vary', 'on') }};
     gzip_proxied {{ nginx.get('gzip_proxied', 'any') }};
     gzip_comp_level {{ nginx.get('gzip_comp_level', 6) }};
