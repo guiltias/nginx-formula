@@ -41,6 +41,8 @@ http {
     include /etc/nginx/mime.types;
     default_type  {{ nginx.get('default_type', 'application/octet-stream') }};
     send_timeout {{ nginx.get('send_timeout', 10) }};
+    client_body_timeout {{ nginx.get('client_body_timeout', 12) }};
+    client_header_timeout {{ nginx.get('client_header_timeout', 12) }};
     keepalive_timeout {{ nginx.get('keepalive_timeout', 10) }};
     sendfile {{ nginx.get('sendfile', 'on') }};
     proxy_max_temp_file_size {{ nginx.get('proxy_max_temp_file_size', 0) }};
