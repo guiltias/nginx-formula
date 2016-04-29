@@ -40,6 +40,7 @@ http {
     {% endif -%}
     include /etc/nginx/mime.types;
     default_type  {{ nginx.get('default_type', 'application/octet-stream') }};
+    send_timeout {{ nginx.get('send_timeout', 10) }};
     keepalive_timeout {{ nginx.get('keepalive_timeout', 10) }};
     sendfile {{ nginx.get('sendfile', 'on') }};
     proxy_max_temp_file_size {{ nginx.get('proxy_max_temp_file_size', 0) }};
