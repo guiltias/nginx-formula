@@ -64,17 +64,6 @@ http {
     gzip_types {{ nginx.get('gzip_types', ['text/plain', 'text/css', 'application/json', 'application/x-javascript', 'text/xml', 'application/xml', 'application/xml+rss', 'text/javascript'])|join(' ') }};
     gzip_disable "{{ nginx.get('gzip_disable', 'msie6') }}";
 
-    # turn on nginx_status on localhost
-    server {
-        listen 127.0.0.1:80;
-        server_name 127.0.0.1;
-        location /nginx_status {
-            stub_status on;
-            access_log off;
-            allow 127.0.0.1;
-            deny all;
-        }
-    }
 {% if pillar['nginx'] is defined -%}
 {% if pillar['nginx']['redirect_numeric_ip']|default(False) -%}
     server {
